@@ -1,12 +1,26 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { RootState } from "./app/store";
 import ReservationCard from "./components/ReservationCard";
+import { addReservation } from "./features/reservationSlice";
 
 function App() {
 
+  const [reservationName, setReservationName] = useState("");
   const reservations = useSelector((state: RootState) => state.reservations.value)
+  const dispatch = useDispatch();
+
+  const handleAddReservation = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    if (!reservationName) {
+      alert("Please enter a valid reservation name");
+    }
+
+    dispatch(addReservation(reservationName));
+    setReservationName("");
+  }
 
   return (
     <div className="App">
@@ -24,8 +38,10 @@ function App() {
             </div>
           </div>
           <div className="reservation-input-container">
-            <input />
-            <button className="btn">Add</button>
+            <form onSubmit={handleAddReservation}>
+              <input value={reservationName} onChange={(e) => setReservationName(e.target.value)} />
+              <button className="btn">Add</button>
+            </form>
           </div>
         </div>
 

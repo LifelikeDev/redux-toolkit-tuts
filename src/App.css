@@ -44,12 +44,24 @@
 
 .reservation-card-container {
   background-color: white;
-  padding: 0.5rem 1rem;
   border-radius: 0.4rem;
   box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.171);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
   width: 80%;
   margin: 1rem 0;
 }
+
+.reservation-card-container:hover {
+  cursor: pointer;
+}
+
+.reservation-card-container p {
+  margin-right: .5rem;
+}
+
 .reservation-input-container {
   width: 80%;
   padding: 0.5rem 1rem;

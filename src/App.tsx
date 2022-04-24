@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { RootState } from "./app/store";
+import CustomerCard from "./components/CustomerCard";
 import ReservationCard from "./components/ReservationCard";
 import { addReservation } from "./features/reservationSlice";
 
@@ -9,6 +10,7 @@ function App() {
 
   const [reservationName, setReservationName] = useState("");
   const reservations = useSelector((state: RootState) => state.reservations.value)
+  const customers = useSelector((state: RootState) => state.customers.value)
   const dispatch = useDispatch();
 
   const handleAddReservation = (e: { preventDefault: () => void }) => {
@@ -33,7 +35,7 @@ function App() {
             <h5 className="reservation-header">Reservations</h5>
             <div className="reservation-cards-container">
               {
-                reservations.map((name: string, index) => <ReservationCard name={name} index={index}  />)
+                reservations.map((name: string, index) => <ReservationCard name={name} index={index} />)
               }
             </div>
           </div>
@@ -47,16 +49,9 @@ function App() {
 
         {/* Customer Food */}
         <div className="customer-food-container">
-          <div className="customer-food-card-container">
-            <p>Charlex Xavier</p>
-            <div className="customer-foods-container">
-              <div className="customer-food"></div>
-              <div className="customer-food-input-container">
-                <input />
-                <button className="btn">Add</button>
-              </div>
-            </div>
-          </div>
+          {
+            customers.map(({ id, name, food }) => <CustomerCard id={id} name={name} food={food} />)
+          }
         </div>
 
       </div>

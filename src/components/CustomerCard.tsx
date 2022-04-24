@@ -1,13 +1,25 @@
 import { useState } from 'react'
-import { Customer } from '../features/customerSlice'
+import { useDispatch } from 'react-redux';
+import { addFoodToCustomer, AddFoodToCustomer, Customer } from '../features/customerSlice'
 
 const CustomerCard = ({ id, name, food }: Customer) => {
     const [customerFood, setCustomerFood] = useState("");
+    const dispatch = useDispatch();
 
     const populateCustomerFood = (e: { preventDefault: () => void }) => {
         e.preventDefault();
 
-        console.log(customerFood);
+        if (!customerFood) {
+            alert("Please enter a valid customer name");
+        }
+
+        let payload: AddFoodToCustomer = {
+            id,
+            food: customerFood
+        }
+
+        dispatch(addFoodToCustomer(payload));
+        setCustomerFood("");
     }
 
 
@@ -17,7 +29,7 @@ const CustomerCard = ({ id, name, food }: Customer) => {
             <div className="customer-foods-container">
                 <div className="customer-food">
                     {
-                        food.map((item, index) => <p key={index}>{item}</p>)
+                        food.map((item, index) => <p key={index} className='item'>{item}</p>)
                     }
                 </div>
                 <div className="customer-food-input-container">

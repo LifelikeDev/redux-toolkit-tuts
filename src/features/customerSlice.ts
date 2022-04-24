@@ -4,7 +4,7 @@ interface CustomerState {
   value: Customer[];
 }
 
-interface AddFoodToCustomer {
+export interface AddFoodToCustomer {
   id: string;
   food: string;
 }

@@ -90,6 +90,10 @@
   display: flex;
 }
 
+.customer-food .item {
+  font-style: italic;
+}
+
 .customer-food-container p {
   margin-right: 1rem;
   font-weight: 200;
@@ -107,6 +111,7 @@
 
 .customer-food-input-container {
   display: flex;
+  margin-left: 1rem;
 }
 
 .customer-food-input-container input {

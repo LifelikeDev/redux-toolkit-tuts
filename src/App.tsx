@@ -35,7 +35,7 @@ function App() {
             <h5 className="reservation-header">Reservations</h5>
             <div className="reservation-cards-container">
               {
-                reservations.map((name: string, index) => <ReservationCard name={name} index={index} />)
+                reservations.map((name: string, index) => <ReservationCard name={name} index={index} key={index} />)
               }
             </div>
           </div>
@@ -49,9 +49,12 @@ function App() {
 
         {/* Customer Food */}
         <div className="customer-food-container">
-          {
-            customers.map(({ id, name, food }) => <CustomerCard id={id} name={name} food={food} />)
-          }
+          <div>
+            <h5 className="customer-header">Customers</h5>
+            {
+              customers.map(({ id, name, food }) => <CustomerCard key={id} id={id} name={name} food={food} />)
+            }
+          </div>
         </div>
 
       </div>
